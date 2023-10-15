@@ -1,0 +1,1 @@
+Estoy tomando otro curso referente a javascript 15/10/23
