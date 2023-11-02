@@ -13,7 +13,7 @@ const calcularPrecioConDescuento = () => {
 
     // que pasa si no llenan los campos pero clickean en calcular
     if (!price || !discount) {
-        result.innerText = `rellena los campos para obtener resultados`;
+        result.innerText = `Rellena los campos para obtener resultados`;
         return;
     }
     //hicimos un console.log y vimos que los valores de los input se trataban como texto.
@@ -21,8 +21,9 @@ const calcularPrecioConDescuento = () => {
     //por eso vamos a parsear los valores de price y discount con Number(inputPrice.value)
 
     const newPrice= (price * (100 - discount))/100;
-    const totalDiscount = newPrice-price;
-    result.innerText = `el nuevo precio es ${newPrice}, el descuento fué de ${totalDiscount}`;
+    const totalDiscount = price-newPrice;
+    result.innerText = `AHORA PAGARÁS: ${newPrice},
+    el descuento fué de ${totalDiscount}`;
 }
 
 btnCalc.addEventListener('click', calcularPrecioConDescuento);
