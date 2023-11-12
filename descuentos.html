@@ -7,7 +7,7 @@
     <title>Como calcular precios con descuentos</title>
 </head>
 <body>
-    <h2>Como calcular precios con descuentos</h2>
+    <h2>Calcular Descuentos</h2>
     
     <div>
 
@@ -28,6 +28,23 @@
         <p id="response">Introduce el PRECIO del  producto y el DESCUENTO</p>
     </div>
     
+    <h2>Calcular Descuentos con Cupones</h2>
+
+    <div>
+        <div>
+            <div>
+                <label for="pricecupon">Pon aqui el PRECIO para el CUPON</label>
+                <input type="number" name="pricecupon" id="pricecupon">   
+            </div>
+            <label for="cupon">Pon aqui el CODIGO</label>
+            <input type="text" name="cupon" id="cupon">
+            <button id="btnCalCupon">calcular descuento</button>
+            <div>
+                <p> codi#01, codi#02, codi#03 </p>            
+            </div>
+        </div>
+        <p id="responseCupon">Introduce el Cupon de DESCUENTO</p>
+    </div>
 
     <script src="/descuentos.js"></script>
 </body>
