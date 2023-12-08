@@ -1,13 +1,9 @@
-
-console.group('calcularPrecioConDescuento')
-
-
 const btnCalc = document.querySelector('#btnCalc');
 const inputPrice = document.querySelector('#price');
 const inputDiscount = document.querySelector('#discount');
 const result = document.querySelector('#response');
 
-
+ 
 const calcularPrecioConDescuento = () => {
     //PARA CALCULAR EL PRECIO CON DESCUENTO:
     // (P*(100-D))/100
@@ -36,7 +32,6 @@ const calcularPrecioConDescuento = () => {
 //pero creo que lo arregle enpaquetandolos en diferentes div
 btnCalc.addEventListener('click', calcularPrecioConDescuento);
 
-console.Endgroup('calcularPrecioConDescuento')
 /*
 ESTE FUE MI INTENTO QUE LUEGO CORREGI CON IA
 
@@ -121,8 +116,6 @@ pResult.innerText = 'El nuevo precio con descuento es $' + newPrice;
 }
 */
 
-console.group('calcularPrecioConDescuento')
-
 
 
 // const btnCalCupon = document.querySelector('#btnCalCupon');
@@ -173,9 +166,9 @@ console.group('calcularPrecioConDescuento')
 
 
 const btnCalCupon = document.querySelector('#btnCalCupon');
+const pricecupon = document.querySelector('#pricecupon');
 const inputCupon = document.querySelector('#cupon');
 const responseCupon = document.querySelector('#responseCupon');
-const pricecupon = document.querySelector('#pricecupon');
 
 const arrayDeLaApi = [];
 
@@ -194,8 +187,6 @@ arrayDeLaApi.push({
     discount: 30,
 });
 
-let discountPercentage;
-
 btnCalCupon.addEventListener('click', () => {
     const priceCupon = Number(pricecupon.value);
     const cuponCode = inputCupon.value;
@@ -205,70 +196,28 @@ btnCalCupon.addEventListener('click', () => {
         return;
     }
 
-    function isCouponInArray(couponElement) {
-        return couponElement.name
+    // Utiliza el método find para buscar el cupón en el array
+    const couponInArray = arrayDeLaApi.find(couponElement => couponElement.name === cuponCode);
+
+    if (couponInArray) {
+        // Asigna el porcentaje de descuento
+        const discountPercentage = couponInArray.discount;
+
+        // Calcula el nuevo precio con descuento
+        const newPriceCupon = (priceCupon * (100 - discountPercentage)) / 100;
+        const totalDiscount = priceCupon - newPriceCupon;
+
+        // Muestra el mensaje con el descuento aplicado
+        responseCupon.innerText = `¡Qué suerte tienes! has obtenido un ${discountPercentage}% de descuento.
+        El precio ahora es de ${newPriceCupon}. Se han descontado ${totalDiscount}.`;
+    } else {
+        responseCupon.innerText = 'El Cupón no es valido';
     }
-
-    const couponInArray = arrayDeLaApi.
-
-        if(isCouponInArray){
-            discountPercentage = couponInArray.discount
-        }else{
-            responseCupon.innerText = 'El Cupón no es valido';
-    return
+    
+    console.log({
+    priceCupon,
+    cuponCode,
+    couponInArray,
+    discountPercentage,
+    couponElement});
 });
-
-
-
-
-
-// for (const cuponObj of arrayDeLaApi) {
-//     const cuponCode = Object.keys(cuponObj)[0];
-
-//     if (inputCupon.value === cuponCode) {
-//         discountPercentage = cuponObj[cuponCode];
-//         break; // Salir del bucle una vez encontrado el código
-//     }
-// }
-
-// if (discountPercentage === 0) {
-//     responseCupon.innerText = "Nada de lo que has escrito tiene descuento";
-//     return;
-// }
-
-
-
-
-const newPriceCupon = (priceCupon * (100 - discountPercentage)) / 100;
-const totalDiscount = priceCupon - newPriceCupon;
-
-responseCupon.innerText = `¡Qué suerte tienes! has obtenido un ${discountPercentage}% de descuento.
-    El precio ahora es de ${newPriceCupon}. Se han descontado ${totalDiscount}.`;
-});
-console.Endgroup('calcularPrecioConDescuento')
-
-
-// // for (const cuponObj of arrayDeLaApi) {
-// //     const cuponCode = Object.keys(cuponObj)[0];
-
-// //     if (inputCupon.value === cuponCode) {
-// //         discountPercentage = cuponObj[cuponCode];
-// //         break; // Salir del bucle una vez encontrado el código
-// //     }
-// // }
-
-// // if (discountPercentage === 0) {
-// //     responseCupon.innerText = "Nada de lo que has escrito tiene descuento";
-// //     return;
-// // }
-
-
-
-
-// const newPriceCupon = (priceCupon * (100 - discountPercentage)) / 100;
-// const totalDiscount = priceCupon - newPriceCupon;
-
-// responseCupon.innerText = `¡Qué suerte tienes! has obtenido un ${discountPercentage}% de descuento.
-//     El precio ahora es de ${newPriceCupon}. Se han descontado ${totalDiscount}.`;
-// });
-// console.Endgroup('calcularPrecioConDescuento')
