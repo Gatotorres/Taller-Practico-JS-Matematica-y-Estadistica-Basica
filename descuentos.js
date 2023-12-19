@@ -202,7 +202,8 @@ btnCalCupon.addEventListener('click', () => {
     if (couponInArray) {
         // Asigna el porcentaje de descuento
         const discountPercentage = couponInArray.discount;
-
+        console.log(couponInArray);
+        console.log(couponElement);
         // Calcula el nuevo precio con descuento
         const newPriceCupon = (priceCupon * (100 - discountPercentage)) / 100;
         const totalDiscount = priceCupon - newPriceCupon;
@@ -214,10 +215,4 @@ btnCalCupon.addEventListener('click', () => {
         responseCupon.innerText = 'El Cupón no es valido';
     }
     
-    console.log({
-    priceCupon,
-    cuponCode,
-    couponInArray,
-    discountPercentage,
-    couponElement});
 });
