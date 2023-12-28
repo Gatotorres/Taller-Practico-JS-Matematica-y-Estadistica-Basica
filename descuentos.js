@@ -203,7 +203,8 @@ btnCalCupon.addEventListener('click', () => {
         // Asigna el porcentaje de descuento
         const discountPercentage = couponInArray.discount;
         console.log(couponInArray);
-        console.log(couponElement);
+        // si intento console.log(couponElement) para ver dicho elemento, se corta la ejecicion del resto.
+
         // Calcula el nuevo precio con descuento
         const newPriceCupon = (priceCupon * (100 - discountPercentage)) / 100;
         const totalDiscount = priceCupon - newPriceCupon;
