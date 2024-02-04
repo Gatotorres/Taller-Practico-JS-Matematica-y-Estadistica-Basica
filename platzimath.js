@@ -7,7 +7,7 @@ function calcularPromedio(lista) {
     //mientras i sea menor al largo de la lista.
     for(let i = 0; i < lista.length; i ++){ 
         sumaLista = sumaLista + lista[i];
-        //acá llamamos la variable en 0, y le decimos que es ella misma (0)
+        //acá re inicializamos la variable en 0, y le decimos que es ella misma (0)
         //más el array Lista en la posición i
         console.log(sumaLista);
         //aqui simplemente imprimimos sumaLista para que siempre al terminar un ciclo nos diga 
@@ -47,3 +47,27 @@ btnCalcPromedio.addEventListener('click', () => {
     // Muestra el resultado en el HTML
     resultPromedio.innerText = `El promedio es: ${promedio}`;
 });
+
+///AHORA HARÉ LA MISMA LOGICA PERO UTILIZANDO .REDUCE <<----------
+function calcularPromedio2(valorAcumulado,nuevoValor) {
+    return valorAcumulado + nuevoValor;
+};
+
+//el metodo .reduce lo que hace es recibir una lista de valores
+//y reducirlos a todos a un simple valor
+const arrayInput2 = document.querySelector('#arrayInput2');
+const btnCalcPromedio2 = document.querySelector('#btnCalcPromedio2');
+const resultPromedio2 = document.querySelector('#resultPromedio2');
+
+btnCalcPromedio2.addEventListener('click', () => {
+    const inputArray2 = arrayInput2.value.split(',').map(Number);
+    if(inputArray2.some(isNaN)) {
+        resultPromedio2.innerText = 'ingresa un array válido';
+        return;
+    }
+
+    const metodoReduce = inputArray2.reduce(calcularPromedio2);
+    const promedio2 = metodoReduce / inputArray2.length;
+    resultPromedio2.innerText = `El promedio es ${promedio2}`;
+});
+

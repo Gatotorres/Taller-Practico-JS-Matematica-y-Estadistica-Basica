@@ -38,7 +38,7 @@ ESTE FUE MI INTENTO QUE LUEGO CORREGI CON IA
 const btnCalCupon = document.querySelector('#btnCalCupon');
 const inputCupon = document.querySelector('#cupon');
 const responseCupon = document.querySelector('#responseCupon');
-const pricecupon = document.querySelector('#pricecupon');
+const pricecupon = document.querySelector('#pricecupon');  
 
 const calcularCuponDescuento = () => {
     const codigo1 = "codi#01";
