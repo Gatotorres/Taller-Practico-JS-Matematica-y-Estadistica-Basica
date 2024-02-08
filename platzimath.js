@@ -71,3 +71,29 @@ btnCalcPromedio2.addEventListener('click', () => {
     resultPromedio2.innerText = `El promedio es ${promedio2}`;
 });
 
+///////////////////////////////////////////////////////////////////
+//Calculando la mediana en una lista sin importar si es par o no //
+///////////////////////////////////////////////////////////////////
+
+const arrayInput3 = document.querySelector('#arrayInput3');
+const btnCalcPromedio3 = document.querySelector('#btnCalcPromedio3');
+const resultPromedio3 = document.querySelector('#resultPromedio3');
+
+btnCalcPromedio3.addEventListener('click', calcularMediana);
+
+function calcularMediana() {
+    const varArray = arrayInput3.value.split(',').map(Number);
+    const var1 = varArray.sort((a, b) => a - b);
+
+    let mediana;
+    if (var1.length % 2 === 0) {
+        const index1 = var1.length / 2 - 1;
+        const index2 = var1.length / 2;
+        mediana = (var1[index1] + var1[index2]) / 2; // Calcular la media de los dos números del medio
+    } else {
+        const index = Math.floor(var1.length / 2);
+        mediana = var1[index]; // Obtener el número en la posición de la mitad
+    }
+
+    resultPromedio3.innerText = `La mediana es ${mediana}`;
+};
