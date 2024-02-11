@@ -84,6 +84,7 @@ btnCalcPromedio3.addEventListener('click', calcularMediana);
 function calcularMediana() {
     const varArray = arrayInput3.value.split(',').map(Number);
     const var1 = varArray.sort((a, b) => a - b);
+    console.log(var1);
 
     let mediana;
     if (var1.length % 2 === 0) {
@@ -92,8 +93,73 @@ function calcularMediana() {
         mediana = (var1[index1] + var1[index2]) / 2; // Calcular la media de los dos números del medio
     } else {
         const index = Math.floor(var1.length / 2);
-        mediana = var1[index]; // Obtener el número en la posición de la mitad
+        mediana = var1[index];
+        console.log(mediana) // Obtener el número en la posición de la mitad
     }
 
     resultPromedio3.innerText = `La mediana es ${mediana}`;
 };
+
+///////////////////////////////////////////////////////////////////
+//Calculando la moda en una lista //
+///////////////////////////////////////////////////////////////////
+
+//como transformar un objeto en un array
+//se puede con objet.key() objet.value() y objet.entries()
+//luego seleccionar al mas grande pero de los elementos que se acumulan,
+//no del valor del .key, sino del .value
+
+//entonces llamemos a los elementos HTML 
+// .split() .map() .sort() y Math.floor()
+
+const arrayInput4 = document.querySelector('#arrayInput4');
+const btnCalcPromedio4 = document.querySelector('#btnCalcPromedio4');
+const resultPromedio4 = document.querySelector('#resultPromedio4');
+
+btnCalcPromedio4.addEventListener('click', calcularMedia);
+
+function calcularModa(){
+    const arrayModa = arrayInput4.value.split(',').map(Number);
+    const modaOrdenada = arrayModa.sort((a,b)=>a-b);
+    const modaObjeto = {modaOrdenada};
+    const modaEntries = modaOrdenada.entries();
+    console.log(modaEntries);
+    console.log(modaObjeto);
+}
+
+
+//
+// codigo y razonamiento del profe
+// 
+//
+function calcularModa(lista) {
+    const listaCount = {};
+    for (let i = 0; i < lista.length; i++){ 
+        const elemento = lista[i];
+        if (listaCount[elemento]){ 
+            listaCount[elemento] += 1;
+        }else { listaCount[elemento] = 1;
+        }
+    }
+    const listaArray = Object.entries(listaCount);
+    const listaOrdenada = ordenarListaBidimensional(listaArray, 1)
+    const listaMaxNumber = listaOrdenada[listaOrdenada.length - 1];
+    const moda = listaMaxNumber[0]; 
+    return moda;
+}
+
+// function ordenarLista(listaDesordenada){
+//     function ordenarListaSort(valorAcumulado, nuevoValor){
+//         return valorAcumulado - nuevoValor;
+//     }
+//     const lista = listaDesordenada.sort(ordenarListaSort);
+//     return lista;
+// }
+
+function ordenarListaBidimensional(listaDesordenada, i){
+    function ordenarListaSort(valorAcumulado, nuevoValor){
+        return valorAcumulado[i] - nuevoValor[i];
+    }
+    const lista = listaDesordenada.sort(ordenarListaSort);
+    return lista;
+}
