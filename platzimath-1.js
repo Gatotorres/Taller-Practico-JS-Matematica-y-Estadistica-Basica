@@ -104,5 +104,6 @@ PlatziMath.areaDeUnTriangulo = function areaDeUnTriangulo(base,altura){
     const baseTriangulo = Number(base);
     const alturaTriangulo = Number(altura);
     const areaTriangulo = (baseTriangulo*alturaTriangulo)/2;
-    return `[base,altura] y responde areaDeUnTriangulo ${areaTriangulo}`;
+    return `base,altura y responde areaDeUnTriangulo ${areaTriangulo}`;
 };
+
