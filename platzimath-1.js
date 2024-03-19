@@ -9,6 +9,7 @@ const PlatziMath = {};
 PlatziMath.calcularMediana = function calcularMediana(arrayInput3){
     const varArray = arrayInput3.map(Number);
     const var1 = varArray.sort((a, b) => a - b);
+    console.log(var1);
     let mediana;
     if (var1.length % 2 === 0) {
             const index1 = var1.length / 2 - 1;
@@ -18,7 +19,8 @@ PlatziMath.calcularMediana = function calcularMediana(arrayInput3){
             const index = Math.floor(var1.length / 2);
             mediana = var1[index];
     };
-    return `[introduce un array  de x largo, separado por comas] La mediana es ${mediana}`;
+    console.log(`[introduce un array  de x largo, separado por comas] La mediana es ${mediana}`)
+    return mediana;
 };
 PlatziMath.calcularModa = function calcularModa(arrayInput4) {
     // Crear un objeto para contar la frecuencia de cada elemento
