@@ -59,3 +59,49 @@ function proyeccionPorPersona(nombrePersona) {
     return nuevoSalario;
   }
 
+
+/*
+ANALISIS EMPRESARIAL
+
+Industrias Mokepon: {
+    2018: [{salario: nombre},{salario: nombre},{salario: nombre},]
+    2019: [{...}]
+    ...
+}
+
+
+*/
+
+const empresas = {};
+
+for (persona of salarios) {
+    for (trabajo of persona.trabajos) {
+        const { name, empresa, year, salario } = trabajo;
+        
+        if (!empresas[empresa]) {
+            empresas[empresa] = {};
+        }
+        if (!empresas[empresa][year]) {
+            empresas[empresa][year] = [];
+        } 
+        empresas[empresa][year].push({ nombre: name, salario: salario });
+    }
+}
+console.log(empresas);
+
+
+const empresas2 = {};
+
+for (persona of salarios) {
+    for (trabajo of persona.trabajos) {
+        if (!empresas2[trabajo.empresa]) {
+            empresas2[trabajo.empresa] = {};
+        }
+        if (!empresas2[trabajo.empresa][trabajo.year]) {
+            empresas2[trabajo.empresa][trabajo.year] = [];
+        }
+        empresas2[trabajo.empresa][trabajo.year].push(trabajo.salario);
+    }
+}
+
+console.log(empresas2);
