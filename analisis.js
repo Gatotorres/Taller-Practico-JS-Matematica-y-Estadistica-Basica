@@ -105,3 +105,95 @@ for (persona of salarios) {
 }
 
 console.log(empresas2);
+
+
+function salariosEmpresariales(nombre, year){
+    if(!empresas2[nombre]){
+        console.warn('la empresa no existe');
+    }else if(!empresas2[nombre][year]){
+        console.warn('la empresa no dio salarios ese año');
+    }else{
+       return PlatziMath.calcularMediana(empresas2[nombre][year]);
+    }
+}
+salariosEmpresariales("Daily Planet",2018);
+salariosEmpresariales("Inversionify",2019);
+salariosEmpresariales("Mokepon",2020);
+
+// ahora haremos una proyeccion de los salarios por empresa
+
+/*
+brainstorm,
+necesito una funcion que reciba el nombrede la empresa y diga su proyeccion para el siguiente
+año, tiene que usar como referencia todos los salarios que dió en todos los años
+empresas2 es un objeto con todos los nombres, dentro tiene 1 objeto para 
+cada año y cada año tiene como valor un array
+*/
+
+function proyeccionEmpresarial(nombreEmpresa) {
+    if (!empresas2[nombreEmpresa]) {
+        console.warn('esta empresa no existe');
+    } else {
+        const empresaYears = Object.keys(empresas2[nombreEmpresa]);
+        const listaMedianaYears = empresaYears.map((year) => {
+            return salariosEmpresariales(nombreEmpresa, year);
+        });
+        console.log(listaMedianaYears);
+        let porcentajesCrecimiento = [];
+
+        for (let i = 1; i < listaMedianaYears.length; i++) {
+            const salarioActual = listaMedianaYears[i];
+            const salarioPasado = listaMedianaYears[i - 1];
+            const crecimiento = salarioActual - salarioPasado;
+            const porcentajeCrecimiento = crecimiento / salarioPasado;
+            porcentajesCrecimiento.push(porcentajeCrecimiento);
+        }
+        const medianaPorcentajesCrecimiento = PlatziMath.calcularMediana(
+            porcentajesCrecimiento);
+        console.log(medianaPorcentajesCrecimiento);
+        const ultimaMediana = listaMedianaYears[listaMedianaYears.length - 1];
+        console.log(ultimaMediana);
+        const aumento = ultimaMediana * medianaPorcentajesCrecimiento;
+        console.log(aumento);
+        const nuevaMediana = ultimaMediana + aumento;
+        console.log(nuevaMediana);
+        return nuevaMediana;
+    }
+}
+
+//ANALISIS GENERAL
+function medianaPorPersona(nombrePersona) {
+    const persona = encontrarPersona(nombrePersona);
+    if (persona && persona.trabajos) {
+        const trabajos = persona.trabajos;
+        const salarios = trabajos.map(elemento => elemento.salario);
+        const medianaSalarios = PlatziMath.calcularMediana(salarios);
+        return medianaSalarios;
+    } else {
+        // Manejar el caso cuando la persona no fue encontrada o no tiene trabajos
+        return NaN; // Por ejemplo, retornar NaN
+    }
+}
+
+function medianaGeneral() {
+    const nombres = salarios.map(persona => persona.name);
+    console.log("Nombres:", nombres);
+
+    const medianaPorCadaNombre = salarios.map(persona => medianaPorPersona(persona.name));
+    console.log("Medianas por cada nombre:", medianaPorCadaNombre);
+
+    console.log({ nombres, medianaPorCadaNombre });
+    return medianaPorCadaNombre;
+}
+
+function medianaTop10(){
+    const listaMedianas = salarios.map(persona => medianaPorPersona(persona.name));
+    const medianasOrdenadas = PlatziMath.ordenarLista(listaMedianas);
+    const cantidad = listaMedianas.length/10;
+    const limite = listaMedianas.length-cantidad;
+    const top10 = medianasOrdenadas.slice(limite,medianasOrdenadas.length);
+    const medianaTop10 = PlatziMath.calcularMediana(top10);
+    return medianaTop10;
+}
+console.log(medianaGeneral());
+console.log(medianaTop10());

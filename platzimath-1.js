@@ -108,4 +108,11 @@ PlatziMath.areaDeUnTriangulo = function areaDeUnTriangulo(base,altura){
     const areaTriangulo = (baseTriangulo*alturaTriangulo)/2;
     return `base,altura y responde areaDeUnTriangulo ${areaTriangulo}`;
 };
+PlatziMath.ordenarLista = function ordenarLista(listaDesordenada){
+    function ordenarListaSort(valorAcumulado, nuevoValor){
+        return valorAcumulado-nuevoValor
+    }
+        const lista = listaDesordenada.sort(ordenarListaSort)
+        return lista;
+}
 
